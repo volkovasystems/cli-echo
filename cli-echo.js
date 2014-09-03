@@ -43,15 +43,15 @@
 	@include:
 	@end-include
 */
-var cliEcho = function cliEcho( echoLine, commandLineInterface, cliEnvironmentVariableSet ){
-	if( ECHO_COMMAND_PATTERN.test( echoLine ) &&
+var cliEcho = function cliEcho( ){
+	/*if( ECHO_COMMAND_PATTERN.test( echoLine ) &&
 		!cliEnvironmentVariableSet.LOG_STATE )
 	{
 		echoLine = echoLine.replace( ECHO_COMMAND_PATTERN, "" );
 		echoLine = [ echoLine, "\r" ].join( "" );
 
 		commandLineInterface.write( echoLine );
-	}
+	}*/
 };
 
 const ECHO_COMMAND_PATTERN = /\@echo\:/;
