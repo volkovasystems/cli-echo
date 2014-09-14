@@ -43,15 +43,20 @@
 	@include:
 	@end-include
 */
-var cliEcho = function cliEcho( ){
-	/*if( ECHO_COMMAND_PATTERN.test( echoLine ) &&
-		!cliEnvironmentVariableSet.LOG_STATE )
-	{
-		echoLine = echoLine.replace( ECHO_COMMAND_PATTERN, "" );
-		echoLine = [ echoLine, "\r" ].join( "" );
+var cliEcho = function cliEcho( CLI, specificNamespace ){
+	
+	CLI.SESSION.CLI_ECHO = "cli-echo";
 
-		commandLineInterface.write( echoLine );
-	}*/
+	this.listenToEvent( CLI.EVENT.LINE_STRING_MODIFIED, specificNamespace,
+		function cliEcho( line, commandLineInterface ){
+			if( ECHO_COMMAND_PATTERN.test( echoLine ) ){
+				var echoLine = line.replace( ECHO_COMMAND_PATTERN, "" );
+	
+				echoLine = [ echoLine, "\r" ].join( "" );
+
+				commandLineInterface.write( echoLine );
+			}		
+		} );
 };
 
 const ECHO_COMMAND_PATTERN = /\@echo\:/;
